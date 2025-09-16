@@ -1,5 +1,5 @@
 import "./App.css";
-import GoodMorningMessage from "./GoodMorningMessage";
+import GoodMorningMessage from "./GoodMorningMessage.jsx";
 
 function App() {
   return <GoodMorningMessage />;

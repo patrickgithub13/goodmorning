@@ -373,7 +373,7 @@ const GoodMorningMessage = () => {
               animation: "glow 3s ease-in-out infinite",
             }}
           >
-            Good Morning, Beautiful!
+            Good Morning, My Beautiful Love!
           </h1>
         </div>
 
@@ -663,3 +663,4 @@ const GoodMorningMessage = () => {
 };
 
 export default GoodMorningMessage;
+

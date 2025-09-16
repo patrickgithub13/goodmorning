@@ -1,8 +1,7 @@
+import ApologyMessage from "./component/ApologyMessage.jsx";
 import "./App.css";
-import GoodMorningMessage from "./GoodMorningMessage.jsx";
 
 function App() {
-  return <GoodMorningMessage />;
+  return <ApologyMessage />;
 }
-
 export default App;

@@ -44,6 +44,42 @@ const GoodMorningMessage = () => {
     "Forever grateful for you! 🙏",
     "You're simply magical! 🪄",
   ];
+  useEffect(() => {
+    setShowMessage(true);
+    generateHearts();
+
+    if (audioRef.current) {
+      audioRef.current.volume = 0.3;
+      audioRef.current.loop = true;
+
+      // Try autoplay immediately (may be blocked if not muted)
+      audioRef.current.play().catch(() => {
+        console.log("Autoplay blocked until user interaction.");
+      });
+    }
+
+    // Enable sound after any user click
+    const enableSound = () => {
+      if (audioRef.current) {
+        audioRef.current.muted = false;
+        audioRef.current
+          .play()
+          .then(() => setIsPlaying(true))
+          .catch((e) => console.log("Audio play failed:", e));
+      }
+      window.removeEventListener("click", enableSound);
+    };
+    window.addEventListener("click", enableSound);
+
+    const interval = setInterval(() => {
+      setCurrentQuote((prev) => (prev + 1) % motivationalQuotes.length);
+    }, 4000);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("click", enableSound);
+    };
+  }, []);
 
   useEffect(() => {
     setShowMessage(true);
@@ -184,11 +220,7 @@ const GoodMorningMessage = () => {
       }}
     >
       {/* Background Music */}
-      <audio
-        ref={audioRef}
-        src="https://cdnjs.cloudflare.com/ajax/libs/html5media/1.1.8/html5media.min.js"
-        preload="auto"
-      />
+      <audio ref={audioRef} src="/videoplayback.mp3" autoPlay muted />
 
       {/* Music Controls */}
       <div
